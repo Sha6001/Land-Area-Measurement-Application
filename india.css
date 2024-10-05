@@ -1,0 +1,96 @@
+@charset "utf-8";
+/* Apply a full-screen background image */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: url('Geo.jpg') no-repeat center center fixed;
+  background-size: cover;
+  animation: backgroundAnimation 20s infinite;
+}
+
+/* Center the container and give it some padding */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.434); /* White background with some transparency */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for the container */
+}
+
+/* Style the text container with shadow background */
+.text-container {
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.1); /* Shadow background */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect for the text container */
+}
+
+/* Style the headings */
+h1 {
+  text-align: center;
+  color: #FF9999; /* Light red color for h1 */
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+h2 {
+  text-align: center;
+  color: #FF9999; /* Light red color for h2 */
+  font-size: 1.5em;
+  margin: 10px 0;
+}
+
+/* Style the paragraphs */
+p {
+  color: #0000FF; /* Blue color for paragraphs */
+}
+
+/* Style the rows with shadow effects */
+.row {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f9f9f98f;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect for rows */
+  color: #34495E; /* New color for text in rows */
+}
+
+/* Style the links to look like buttons */
+.row a {
+  text-decoration: none;
+  color: #ECF0F1; /* New color for links */
+  display: block;
+  margin: 10px 0;
+  padding: 15px;
+  text-align: center;
+  background-color: #3498DB; /* New background color for links */
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect for buttons */
+}
+
+.row a:hover {
+  background-color: #2980B9; /* New hover color for links */
+  transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+.row a:active {
+  transform: translateY(0); /* Reset lift effect when clicked */
+}
+
+@keyframes backgroundAnimation {
+  0% {
+    background: url('Geo.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
+  25% {
+    background: url('globe.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
+  50% {
+    background: url('golb.jpeg') no-repeat center center fixed;
+    background-size: cover;
+  }
+}

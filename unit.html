@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('globe.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+}
+
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        main {
+            margin: 20px;
+        }
+        .converter-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .converter-container h2 {
+            margin-top: 0;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        select, input {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: #333;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #555;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background: #f4f4f4;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        h1
+        {
+            color: hsl(204, 63%, 78%);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Unit Converter</h1>
+    </header>
+    <main>
+        <div class="converter-container">
+            <h2>Convert Units</h2>
+            <label for="unitSelect">Select Unit</label>
+            <select id="unitSelect">
+                <option value="squareMiles">Square Miles</option>
+                <option value="acres">Acres</option>
+                <option value="squareYards">Square Yards</option>
+                <option value="squareFeet">Square Feet</option>
+                <option value="hectares">Hectares</option>
+                <option value="squareMeters">Square Meters</option>
+                <option value="gunthas">Gunthas</option>
+            </select>
+
+            <label for="inputValue">Enter Value</label>
+            <input type="number" id="inputValue" placeholder="Enter value">
+
+            <button onclick="convertUnits()">Convert</button>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Unit</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody id="conversionResults">
+                    <!-- Conversion results will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+   
+    </main>
+    <script>
+        function convertUnits() {
+            const unit = document.getElementById('unitSelect').value;
+            const value = parseFloat(document.getElementById('inputValue').value);
+            
+            if (isNaN(value)) {
+                alert("Please enter a valid number.");
+                return;
+            }
+
+            let results = {};
+
+            switch (unit) {
+                case 'squareMiles':
+                    results = {
+                        squareMiles: value,
+                        acres: value * 640,
+                        squareYards: value * 27878400,
+                        squareFeet: value * 2787840000,
+                        hectares: value * 258.998811,
+                        squareMeters: value * 2589988.11,
+                        gunthas: value * 10398.12
+                    };
+                    break;
+                case 'acres':
+                    results = {
+                        squareMiles: value / 640,
+                        acres: value,
+                        squareYards: value * 4840,
+                        squareFeet: value * 43560,
+                        hectares: value * 0.404686,
+                        squareMeters: value * 4046.86,
+                        gunthas: value * 40
+                    };
+                    break;
+                case 'squareYards':
+                    results = {
+                        squareMiles: value / 29878400,
+                        acres: value / 4840,
+                        squareYards: value,
+                        squareFeet: value * 9,
+                        hectares: value / 11960.4,
+                        squareMeters: value * 0.836127,
+                        gunthas: value / 240
+                    };
+                    break;
+                case 'squareFeet':
+                    results = {
+                        squareMiles: value / 2787840000,
+                        acres: value / 43560,
+                        squareYards: value / 9,
+                        squareFeet: value,
+                        hectares: value / 107639.104,
+                        squareMeters: value * 0.092903,
+                        gunthas: value / 272.25
+                    };
+                    break;
+                case 'hectares':
+                    results = {
+                        squareMiles: value / 258.998811,
+                        acres: value * 2.471053,
+                        squareYards: value * 11960.4,
+                        squareFeet: value * 107639.104,
+                        hectares: value,
+                        squareMeters: value * 10000,
+                        gunthas: value * 40.47
+                    };
+                    break;
+                case 'squareMeters':
+                    results = {
+                        squareMiles: value / 2589988.11,
+                        acres: value / 4046.86,
+                        squareYards: value / 0.836127,
+                        squareFeet: value * 10.7639,
+                        hectares: value / 10000,
+                        squareMeters: value,
+                        gunthas: value / 101.17
+                    };
+                    break;
+                case 'gunthas':
+                    results = {
+                        squareMiles: value / 10398.12,
+                        acres: value / 16.18,
+                        squareYards: value * 240,
+                        squareFeet: value * 272.25,
+                        hectares: value / 40.47,
+                        squareMeters: value * 101.17,
+                        gunthas: value
+                    };
+                    break;
+                default:
+                    results = {};
+            }
+
+            const resultTable = document.getElementById('conversionResults');
+            resultTable.innerHTML = Object.entries(results).map(([unit, val]) => 
+                `<tr><td>${unit.replace(/([A-Z])/g, ' $1').toUpperCase()}</td><td>${val.toFixed(4)}</td></tr>`
+            ).join('');
+        }
+    </script>
+</body>
+</html>

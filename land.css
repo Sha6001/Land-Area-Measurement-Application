@@ -1,0 +1,90 @@
+@charset "utf-8";
+/* Apply a full-screen background image */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: url('front.jpg') no-repeat center center fixed;
+  background-size: cover;
+  animation: backgroundAnimation 20s infinite;
+}
+
+/* Center the container and give it some padding */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.434); /* White background with some transparency */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for the container */
+}
+
+/* Style the headings */
+h1 {
+  text-align: center;
+  color: #333;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+h2 {
+  text-align: center;
+  color: #171616da;
+  font-size: 1.5em;
+  margin: 10px 0;
+}
+
+/* Style the rows with shadow effects */
+.row {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f9f9f98f;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect for rows */
+}
+
+/* Style the links to look like buttons */
+.row a {
+  text-decoration: none;
+  color: #ffffffaa;
+  display: block;
+  margin: 10px 0;
+  padding: 15px;
+  text-align: center;
+  background-color: #0d5db2c0;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect for buttons */
+}
+
+.row a:hover {
+  background-color: #0e6bcf;
+  transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+.row a:active {
+  transform: translateY(0); /* Reset lift effect when clicked */
+}
+
+@keyframes backgroundAnimation {
+  0% {
+    background: url('front.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
+  25% {
+    background: url('Background1.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
+  50% {
+    background: url('Background2.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
+  75% {
+    background: url('Background3.png') no-repeat center center fixed;
+    background-size: cover;
+  }
+  100% {
+    background: url('front.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
+}

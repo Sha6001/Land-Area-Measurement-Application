@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Land Measurement Application - Dishank Style</title>
+    <link rel="stylesheet" href="styles_dishank_advanced.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css" />
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="logo.webp" alt="Logo" class="logo">
+            <h1>Land Measurement Application</h1>
+        </div>
+    </header>
+  
+    <main>
+        <div id="welcome" class="section">
+            <h2>Welcome to Land Measurement App</h2>
+            <button id="startBtn">Start</button>
+        </div>
+        <div id="locationSelection" class="section hidden">
+            <h2>Select Your Location</h2>
+            <div class="form-group">
+                <label for="countrySelect">Country</label>
+                <select id="countrySelect">
+                    <option value="">Select Country</option>
+                    <option value="India">India</option>
+                </select>
+            </div>
+            <div class="form-group hidden" id="stateGroup">
+                <label for="stateSelect">State</label>
+                <select id="stateSelect"></select>
+            </div>
+            <div class="form-group hidden" id="districtGroup">
+                <label for="districtSelect">District</label>
+                <select id="districtSelect"></select>
+            </div>
+            <div class="form-group hidden" id="talukGroup">
+                <label for="talukSelect">Taluk</label>
+                <select id="talukSelect"></select>
+            </div>
+            <div class="form-group hidden" id="panchayatGroup">
+                <label for="panchayatSelect">Gram Panchayat</label>
+                <select id="panchayatSelect"></select>
+            </div>
+            <div class="form-group hidden" id="villageGroup">
+                <label for="villageSelect">Village</label>
+                <select id="villageSelect"></select>
+            </div>
+            <button id="proceedBtn" class="hidden">Proceed to Map</button>
+        </div>
+        <div id="mapContainer" class="section hidden">
+            <div id="languageToggle">
+            
+            </div>
+            <div id="map"></div>
+            <div id="info">
+                <p>Click on the map to create a polygon. Double-click to complete the polygon and measure the area.</p>
+                <div id="area"></div>
+            </div>
+            <button id="downloadPdfBtn" class="hidden">Download PDF</button>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Land Measurement Application</p>
+    </footer>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="app_dishank_advanced.js"></script>
+    <script>
+   
+        document.getElementById('downloadPdfBtn').addEventListener('click', downloadPDF);
+
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const mapElement = document.getElementById('map');
+            const areaElement = document.getElementById('area');
+            
+            // Capture the map area as an image
+            html2canvas(mapElement).then(canvas => {
+                const mapImgData = canvas.toDataURL('image/png');
+
+                // Add map image to PDF
+                doc.setFontSize(18);
+                doc.text("Land Measurement Results", 20, 20);
+                doc.addImage(mapImgData, 'PNG', 20, 30, 160, 120); // Adjust dimensions as needed
+
+                // Add area measurement to PDF
+                doc.setFontSize(12);
+                doc.text("Measured Area:", 20, 160);
+                doc.text(areaElement.innerText, 20, 170);
+
+                // Save the PDF
+                doc.save("measurement_results.pdf");
+            });
+        }
+
+        document.getElementById('proceedBtn').addEventListener('click', function() {
+            document.getElementById('mapContainer').classList.remove('hidden');
+            document.getElementById('downloadPdfBtn').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
